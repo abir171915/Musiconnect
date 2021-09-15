@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="index.css">
   <title>Musiconnect</title>
 </head>
 <body>
@@ -17,9 +17,24 @@
         <div class="nav-list">
           <div class="hamburger"><div class="bar"></div></div>
           <ul>
-            <li><a href="signup.php" data-after="Login">Sign Up</a></li>
-            <li><a href="login.php" data-after="Sign Up">LOGIN</a></li>
-            
+            <!-- <li><a href="signup.php" data-after="Login">Sign Up</a></li> -->
+            <div class="dropdown">
+               <li> <button onclick="myFunction()"   class="dropbtn">Sign Up</button> </li>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="msignup.php">Sign up as a Musician</a>
+                    <a href="signup.php">Sign up as an Audience</a>
+                    
+                </div>
+            </div>
+            <!-- <li><a href="login.php" data-after="Sign Up">LOGIN</a></li> -->
+            <div class="dropdown2">
+               <li> <button onclick="myFunction2()"   class="dropbtn2">Log In</button> </li>
+                <div id="myDropdown2" class="dropdown-content2">
+                    <a href="mlogin.php">Log in as a Musician</a>
+                    <a href="login.php">Log in as an Audience</a>
+                    
+                </div>
+            </div>
           </ul>
         </div>
       </div>
@@ -97,7 +112,46 @@
     </div>
 
        
-      
+     <script>
+         /* When the user clicks on the button,
+                toggle between hiding and showing the dropdown content */
+                function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+                }
+
+                // Close the dropdown menu if the user clicks outside of it
+                window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    
+                if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                    }
+                }
+                }
+                function myFunction2() {
+                document.getElementById("myDropdown2").classList.toggle("show");
+                }
+
+                // Close the dropdown menu if the user clicks outside of it
+                window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn2')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content2");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    
+                if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                    }
+                }
+                }
+     </script> 
    
  
 

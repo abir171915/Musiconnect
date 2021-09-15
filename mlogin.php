@@ -20,7 +20,7 @@
         </div>
     </section>
     <div class="form">
-        <form action="validation.php" method="post">
+        <form action="mvalidation.php" method="post">
         
 
             <div class="container">

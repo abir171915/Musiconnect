@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="msignup.css?v=<?php echo time();?>">
     <title>Document</title>
 </head>
 <body>
@@ -22,21 +22,25 @@
             </section>
         </div>
         <div class = "form">
-            <form action="registration.php" method="post">
+            <form action="mregistration.php" method="post">
         
 
                 <div class="container">
-                    <label><b>Username</b></label>
-				    <input type="text" placeholder="Enter Username" name="user"  required>
+                    <label><b>Artist</b></label>
+				    <input type="text" placeholder="Enter Artist Name" name="artist"  required>
 
 
                     <label ><b>Email</b></label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
+                    <input type="email" placeholder="Enter Email" name="email" required> 
+
+                    <label ><b>Genre</b></label>
+                    <input type="text" placeholder="Enter Genre" name="genre" >
+
 
                     <label ><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>
 
-                    <button type="submit">Login</button>
+                    <button type="submit">Sign Up</button>
                 
                 </div>
 
