@@ -1,8 +1,26 @@
 <?php
-    session_start();
+session_start();
+
+    include('db.php');
+    include('posts.php');
+    
     if($_SERVER['REQUEST_METHOD']=="POST"){
-        print_r($_POST);
+
+        $post =new Post();
+        $res=$post->create_post($_POST);
+        // print_r($_POST);
+        if($res == ""){
+          header("location: mprofile.php");
+          die;
+        }
+        else{
+
+        }
     }
+    //collect post
+    $post =new Post();
+    $id1=$_SESSION['id'];
+    $posts=$post->get_posts($id1);
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +113,7 @@
   <div><br>
     <div class="section-top">
       <h1 class="section-title">News<span> Feed</span></h1>
-      <div style="min-height: 400px;flex:2.5;padding:20px;padding-right: 0px;">
+      <div style="min-height: 200px;flex:2.5;padding:20px;padding-right: 0px;">
         <div style="border: solid thin #aaa; padding: 10px;background-color: white;">
             <form method="post">
                 <textarea name="post" placeholder="Whats on your mind" id="" cols="110" rows="10"></textarea>
@@ -105,10 +123,22 @@
         </div>
 
       </div>
-      
-  
-      
-    </div>
+  </div>
+  <div id="post_bar" >
+      <?php
+        if($posts){
+          foreach ($posts as $row_user) {
+            include("post.php");
+            $post =new Post();
+            $row_user= $post->get_user($id1);
+            
+          }
+        }
+        
+        
+      ?>
+  </div>
+    
   </div>
 <br>
   <!-- Full-width images with number and caption text -->

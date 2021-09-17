@@ -1,29 +1,27 @@
-<?php
-    include('db.php');
-    class Post
-    {
-        private $error="";
-       public function create_post($data){
-           if(!empty($data['post'])){
-                $post= addslashes($data['post']);
-                $id= $_SESSION['m_id'];
-                $postid= $this->create_postid();
-                $sql="insert into posts (postid,m_id,post) values ('$postid','$id','$post')";
-                $res=mysqli_query($con,$sql)
-           }
-           else{
-                $this->error .="Please type something! <br> ";
-           }
-           return $this->error;
-       } 
-       private function create_postid(){
-           $lenght= rand(4,19);
-           $number = "";
-           for($i=0; $i < $lenght; $i++){
-               $new_rand= rand(0,9);
-               $number = $number . $new_rand;
-           }
-           return $number;
-       }
-    }
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="post.css?v=<?php echo time();?>">
+    <title>Document</title>
+</head>
+<body>
+<div id="post">
+    <div>
+
+    </div>
+    <div>
+        <div class="status_bar" style="font-weight: bold;color: #405d9b">First Guy</div>
+            <p>
+            <?php
+                echo  $row_user['post']
+            ?>
+        </p>
+        <br/><br/>
+        
+    </div>
+</div>
+</body>
+</html>

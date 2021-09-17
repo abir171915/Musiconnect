@@ -7,11 +7,11 @@
 	margin: 0;
 	box-sizing: border-box;
 }
-html {
-	font-size: 6px;
+ html {
+	   font-size: 8px;   
 	font-family: 'Montserrat', sans-serif;
 	scroll-behavior: smooth;
-}
+} 
 a {
 	text-decoration: none;
 }
@@ -40,7 +40,7 @@ p {
 	letter-spacing: .05rem;
 }
 .section-title {
-	font-size: 4rem;
+	font-size: 1rem;
 	font-weight: 300;
 	color: black;
 	margin-bottom: 10px;
@@ -81,8 +81,9 @@ p {
 
 /* Header section */
 #header {
+	
 	position:absolute;
-	z-index: 1000;
+	z-index: 100;
 	left: 0;
 	top: 0;
 	width: 100vw;
@@ -94,6 +95,7 @@ p {
 	transition: .3s ease background-color;
 }
 #header .nav-bar {
+	
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -279,6 +281,8 @@ p {
 
 /* End Hero Section */
 * {box-sizing:border-box}
+
+
 
 /* Slideshow container */
 #softwares .slideshow-container {
