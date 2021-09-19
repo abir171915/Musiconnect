@@ -28,7 +28,7 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="profile.css?v=<?php echo time();?>">
+  <link rel="stylesheet" href="mprofile.css?v=<?php echo time();?>">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
 
   <title>Musiconnect</title>
@@ -113,16 +113,17 @@ session_start();
   <div><br>
     <div class="section-top">
       <h1 class="section-title">News<span> Feed</span></h1>
-      <div style="min-height: 200px;flex:2.5;padding:20px;padding-right: 0px;">
-        <div style="border: solid thin #aaa; padding: 10px;background-color: white;">
-            <form method="post">
-                <textarea name="post" placeholder="Whats on your mind" id="" cols="110" rows="10"></textarea>
+       <div class="write"> 
+         <!-- <div class="write1" >  -->
+             <form method="post"> 
+                <textarea name="post" placeholder="Whats on your mind"></textarea> 
+                
                 <input id="post_button" type="submit" value="Post">
                 <br>
-            </form>
-        </div>
+            
+         <!-- </div>  -->
 
-      </div>
+       </div> 
   </div>
   <div id="post_bar" >
       <?php
@@ -137,6 +138,8 @@ session_start();
         
         
       ?>
+      <br>
+      <br>
   </div>
     
   </div>

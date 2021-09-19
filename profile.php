@@ -88,7 +88,9 @@
   <div><br>
     <div class="section-top">
       <h1 class="section-title">News<span> Feed</span></h1>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum deleniti maiores pariatur assumenda quas magni et, doloribus quod voluptate quasi molestiae magnam officiis dolorum, dolor provident atque molestias voluptatum explicabo!</p>
+      <div id="post_bar" >
+      
+      </div>
       
   
       

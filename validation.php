@@ -26,6 +26,7 @@ if($num == 1){
 
 	$_SESSION['email']=$email;
 	$_SESSION['pass2']=$pass;
+	header('location:home.php');
 	
 
 	

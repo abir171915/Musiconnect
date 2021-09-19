@@ -1,3 +1,7 @@
+<?php
+    // session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +17,20 @@
 
     </div>
     <div>
-        <div class="status_bar" style="font-weight: bold;color: #405d9b">First Guy</div>
+        <div class="status_bar" style="font-weight: bold;color: #405d9b"><?php echo $_SESSION['name']?></div>
             <p>
             <?php
                 echo  $row_user['post']
             ?>
         </p>
         <br/><br/>
+
         
     </div>
+    <br>
+    <br>
 </div>
+<br>
+<br>
 </body>
 </html>

@@ -23,8 +23,14 @@
        public function get_posts($id1){
         // $id1= $_SESSION('id');
         include('db.php');
+        
         $sql="select * from posts where m_id='$id1' order by id desc limit 10";
+       
+        
         $res=mysqli_query($con,$sql);
+        
+        
+        
         if(mysqli_num_rows($res)>0){
             while($row=mysqli_fetch_assoc($res)){
                 if($res){
@@ -37,7 +43,9 @@
                 }
             }
         
-       }
+        
+        
+    }
        public function get_user($id1){
            include('db.php');
            $sql="select * from musician where m_id='$id1' limit 1";
