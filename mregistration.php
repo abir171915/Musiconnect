@@ -26,6 +26,7 @@ if($num == 1){
 	mysqli_query($con , $reg);
 	$_SESSION['email']=$email;
 	$_SESSION['Name']=$artist;
+	header('location:mhome.php');
 	
 }
 

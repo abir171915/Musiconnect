@@ -24,7 +24,7 @@
         // $id1= $_SESSION('id');
         include('db.php');
         
-        $sql="select * from posts where m_id='$id1' order by id desc limit 10";
+        $sql="select * from posts where m_id='$id1' order by id desc ";
        
         
         $res=mysqli_query($con,$sql);

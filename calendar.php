@@ -1,115 +1,122 @@
-<?php
-function build_calendar($month,$year){
-    $daysOfWeek = array('Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
-    // What is the first day of the month in question?
-    $firstDayOfMonth = mktime(0,0,0,$month,1,$year);
-
-    // How many days does this month contain?
-    $numberDays = date('t',$firstDayOfMonth);
-
-    // Retrieve some information about the first day of the
-    // month in question.
-    $dateComponents = getdate($firstDayOfMonth);
-
-    // What is the name of the month in question?
-    $monthName = $dateComponents['month'];
-
-    // What is the index value (0-6) of the first day of the
-    // month in question.
-    $dayOfWeek = $dateComponents['wday'];
-
-    // Create the table tag opener and day headers 
-    $datetoday = date('Y-m-d'); 
-    $calendar = "<table class='table table-bordered'>"; 
-    $calendar .= "<center><h2>$monthName $year</h2>"; 
-    $calendar .= "<tr>"; 
-    // Create the calendar headers 
-    foreach($daysOfWeek as $day) { 
-        $calendar .= "<th class='header'>$day</th>"; 
-    } 
-    // Create the rest of the calendar
-    // Initiate the day counter, starting with the 1st. 
-    $currentDay = 1;
-    $calendar .= "</tr><tr>";
-    // The variable $dayOfWeek is used to 
-    // ensure that the calendar 
-    // display consists of exactly 7 columns.
-    if($dayOfWeek > 0) { 
-        for($k=0;$k<$dayOfWeek;$k++){ 
-            $calendar .= "<td class='empty'></td>"; 
-        } 
-    }
-    $month = str_pad($month, 2, "0", STR_PAD_LEFT);
-    while ($currentDay <= $numberDays) { 
-        //Seventh column (Saturday) reached. Start a new row. 
-        if ($dayOfWeek == 7) { 
-            $dayOfWeek = 0; 
-            $calendar .= "</tr><tr>"; 
-        } 
-        $currentDayRel = str_pad($currentDay, 2, "0", STR_PAD_LEFT); 
-        $date = "$year-$month-$currentDayRel"; 
-        
-        $dayname = strtolower(date('l', strtotime($date))); 
-        $eventNum = 0; 
-        $today = $date==date('Y-m-d')? "today" : "";
-        $calendar.="<td><h4>$currentDay</h4>"; 
-        $calendar.="</td>"; 
-        //Increment counters 
-        $currentDay++; 
-        $dayOfWeek++; 
-    } 
-    //Complete the row of the last week in month, if necessary 
-    if ($dayOfWeek != 7) { 
-        $remainingDays = 7 - $dayOfWeek; 
-        for($l=0;$l<$remainingDays;$l++){ 
-            $calendar .= "<td class='empty'></td>"; 
-        } 
-    } 
-
-    $calendar .= "</tr>"; 
-    $calendar .= "</table>";
-
-    echo $calendar;
-}
-
-?>
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    <title>Document</title>
-    <style>
-        table{
-            table-layout : fixed;
-
-        }
-        td{
-            width : 33%;
-        }
-        .today{
-            background: yellow;
-        }
-    </style>
+    <title>Calendar </title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/all.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-             <?php
-                $dateComponents=getdate();
-                $month = $dateComponents['mon'];
-                $year= $dateComponents['year'];
-                echo build_calendar($month,$year);
-             ?>   
-            </div>
+
+<div class="calendar disable-selection" id="calendar">
+    <div class="left-side">
+        <div class="current-day text-center">
+        <form action="event.php" method="post">
+            <h1 class="calendar-left-side-day"><input type="text" name="date">20</h1>
+            
+            <div class="calendar-left-side-day-of-week">Sunday</div>
+        </div>
+        <div class="current-day-events">
+            <div>Current Events:</div>
+            <ul class="current-day-events-list">
+                <li></li>
+            </ul>
+        </div>
+        <div class="add-event-day">
+            
+                <input type="text" class="add-event-day-field" name="eventdetails" placeholder="Create an Event">
+                <button type="submit"  >  click here</button>
+            
         </div>
     </div>
+    <div class="right-side">
+        <div class="text-right calendar-change-year">
+            <div class="calendar-change-year-slider">
+                <span class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev"></span>
+                
+                <span name="year" class="calendar-current-year"><input name="year"></span>
+                
+                <span class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next"></span>
+            </div>
+        </div>
+        </form>
+        <div class="calendar-month-list">
+            
+            <ul class="calendar-month">
+                <li class="" data-month="1">Jan</li>
+                <li class="" data-month="2">Feb</li>
+                <li class="" data-month="3">Mar</li>
+                <li class="" data-month="4">Apr</li>
+                <li class="" data-month="5">May</li>
+                <li class="" data-month="6">Jun</li>
+                <li class="" data-month="7">Jul</li>
+                <li class="" data-month="8">Aug</li>
+               
+                <li class="active" data-month="9">Sep</li>
+                
+                <li class="" data-month="10">Oct</li>
+                <li class="" data-month="11">Nov</li>
+                <li class="" data-month="12">Dec</li>
+            </ul>
+            
+        </div>
+        <div class="calendar-week-list">
+            <ul class="calendar-week"><li>Sun</li><li>Mon</li><li>Tue</li><li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li></ul>
+        </div>
+        <div class="calendar-day-list">
+            <ul class="calendar-days">
+<li class="another-month" data-day="29" data-month="7" data-year="2021"></li>
+<li class="another-month" data-day="30" data-month="7" data-year="2021"></li>
+<li class="another-month" data-day="31" data-month="7" data-year="2021"></li>
+<li class="" data-day="1" data-month="8" data-year="2021"></li>
+<li class="" data-day="2" data-month="8" data-year="2021"></li>
+<li class="" data-day="3" data-month="8" data-year="2021"></li>
+<li class="" data-day="4" data-month="8" data-year="2021"></li>
+<li class="" data-day="5" data-month="8" data-year="2021"></li>
+<li class="" data-day="6" data-month="8" data-year="2021"></li>
+<li class="" data-day="7" data-month="8" data-year="2021"></li>
+<li class="" data-day="8" data-month="8" data-year="2021"></li>
+<li class="" data-day="9" data-month="8" data-year="2021"></li>
+<li class="" data-day="10" data-month="8" data-year="2021"></li>
+<li class="" data-day="11" data-month="8" data-year="2021"></li>
+<li class="" data-day="12" data-month="8" data-year="2021"></li>
+<li class="" data-day="13" data-month="8" data-year="2021"></li>
+<li class="" data-day="14" data-month="8" data-year="2021"></li>
+<li class="" data-day="15" data-month="8" data-year="2021"></li>
+<li class="" data-day="16" data-month="8" data-year="2021"></li>
+<li class="" data-day="17" data-month="8" data-year="2021"></li>
+<li class="" data-day="18" data-month="8" data-year="2021"></li>
+<li class="" data-day="19" data-month="8" data-year="2021"></li>
+<li class="" data-day="20" data-month="8" data-year="2021"></li>
+<li class="" data-day="21" data-month="8" data-year="2021"></li>
+<li class="" data-day="22" data-month="8" data-year="2021"></li>
+<li class="" data-day="23" data-month="8" data-year="2021"></li>
+<li class="" data-day="24" data-month="8" data-year="2021"></li>
+<li class="" data-day="25" data-month="8" data-year="2021"></li>
+<li class="" data-day="26" data-month="8" data-year="2021"></li>
+<li class="" data-day="27" data-month="8" data-year="2021"></li>
+<li class="" data-day="28" data-month="8" data-year="2021"></li>
+<li class="" data-day="29" data-month="8" data-year="2021"></li>
+<li class="" data-day="30" data-month="8" data-year="2021"></li>
+<li class="another-month" data-day="1" data-month="9" data-year="2021"></li>
+<li class="another-month" data-day="2" data-month="9" data-year="2021"></li>
+<li class="another-month" data-day="3" data-month="9" data-year="2021">
+</li><li class="another-month" data-day="4" data-month="9" data-year="2021"></li>
+</ul>
+        </div>
+    </div>
+</div>
+
+ <script async="" src="scripts/all.js"></script> 
+<!-- <script>
+     var j = new CALENDAR();
+     
+    // var elements = document.getElementsByClassName("CALENDAR");
+    // var value = elements[9].value;
+    var date=j.getFirstElementInsideIdByClassName(CALENDAR);
+    document.write(date);
+        
+    
+</script> -->
 </body>
 </html>

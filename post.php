@@ -17,12 +17,16 @@
 
     </div>
     <div>
-        <div class="status_bar" style="font-weight: bold;color: #405d9b"><?php echo $_SESSION['name']?></div>
-            <p>
+    <button>
+    <div class="dots">...<div>
+    </button>
+        <div class="status_bar"><?php echo $_SESSION['name']?></div>
+            <p class="posttext">
             <?php
-                echo  $row_user['post']
+                echo  $row_user['post'];
             ?>
         </p>
+        
         <br/><br/>
 
         

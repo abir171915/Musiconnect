@@ -29,7 +29,7 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mprofile.css?v=<?php echo time();?>">
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  -->
 
   <title>Musiconnect</title>
 </head>
@@ -42,13 +42,13 @@ session_start();
           <a href="#hero"><h1><span>MUSI</span>CON<span>N</span>ect</h1></a>
         </div>
         <div class="nav-list">
-          <div class="hamburger"><div class="bar"></div></div>
+          <!-- <div class="hamburger"><div class="bar"></div></div> -->
           <ul>
             <li><a href="mhome.php" data-after="Home">HOME</a></li>
             <li><a href="#" data-after="Service">EDIT PROFILE</a></li>
             <!-- <li><a href="#" data-after="Projects">REGISTRATION</a></li> -->
             <li><a href="#" data-after="Contact">LATEST PROGRAM</a></li>
-            <li><a href="#" data-after="Contact">Calendar</a></li>
+            <li><a href="calender.php" data-after="Contact">Calendar</a></li>
           </ul>
         </div>
       </div>
@@ -62,7 +62,7 @@ session_start();
           
                <?php
                   include('db.php');
-               $str=$_SESSION['id'];
+                  $str=$_SESSION['id'];
                   $sql="select * from musician where m_id like '$str'";
                   $res=mysqli_query($con,$sql);
                   if(mysqli_num_rows($res)>0){
@@ -79,8 +79,8 @@ session_start();
 
     <div class="herocontainer">
         
-      <div>
-          <div class="details">
+      <!-- <div> -->
+          <!-- <div class="details"> -->
                 <?php
                     include('db.php');
                      $str=$_SESSION['id'];
@@ -88,7 +88,7 @@ session_start();
                     $res=mysqli_query($con,$sql);
                     if(mysqli_num_rows($res)>0){
                     while($row=mysqli_fetch_assoc($res)){
-                    echo  '<h1>'.'Name: '.$row['Name'].'</h1>';
+                    echo  '<h1>'.$row['Name'].'</h1>';
                     echo "<br/>";
                     echo '<h1>'.'Genre: '.$row['Genre'].'</h1>';
                 
@@ -98,96 +98,74 @@ session_start();
                         }
                     }      
                 ?>
-        </div>
+        <!-- </div> -->
         
         <!-- <a  href="#" type="button" class="cta">Book Now</a> -->
-      </div>
+      <!-- </div> -->
     </div>
   </section>
-  <br>
+
+  <!-- <br> -->
   <!-- End Hero Section  -->
+  <section id="menubar">
+          <div class="menubutton">
+            <a href="mprofile.php"><button class="button" type="button">Timeline</button></a>
+            <a href="calendar.php"><button class="button" type="button">Calender</button></a>
+            <!-- <button class="button" type="button"></button> -->
+            <button class="button" type="button">About</button>
+          </div>
+  </section>
 
 <!-- Slideshow container -->
 <section id="softwares">
 <div class="slideshow-container">
   <div><br>
     <div class="section-top">
-      <h1 class="section-title">News<span> Feed</span></h1>
+      <!-- <h1 class="section-title">News<span> Feed</span></h1> -->
        <div class="write"> 
          <!-- <div class="write1" >  -->
              <form method="post"> 
                 <textarea name="post" placeholder="Whats on your mind"></textarea> 
                 
-                <input id="post_button" type="submit" value="Post">
+                <input class="postbutton" id="post_button" type="submit" value="Post">
                 <br>
-            
+              </form>
          <!-- </div>  -->
 
        </div> 
   </div>
   <div id="post_bar" >
-      <?php
-        if($posts){
-          foreach ($posts as $row_user) {
-            include("post.php");
-            $post =new Post();
-            $row_user= $post->get_user($id1);
-            
-          }
-        }
-        
-        
-      ?>
+          
+          <?php
+            if($posts){
+              foreach ($posts as $row_user) {
+               
+                
+                echo "<div class='dropdown'>";
+                  echo "<button class='dotbtn'>";
+                  echo  "<div class='dots'>...</div>";
+                  echo "</button>";
+                  echo "<div class='dropdown-content'>";
+                  // echo "<a href='updatepost.php?text=$row_user[post]'>Edit Post</a>";
+                  echo "<a href='deletepost.php?text=$row_user[post]'>Delete Post</a>";
+                 
+                  
+                  echo "</div>";
+                echo "</div>";
+                
+                include("post.php");
+                $post =new Post();
+                $row_user= $post->get_user($id1); 
+              }
+            }  
+          ?>
       <br>
       <br>
   </div>
     
   </div>
 <br>
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
-    <div class="soft-img">
-    <img src="img/img-1.png" style="width:100%"></div>
-    <div class="text">Caption Text</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <div class="soft-img">
-      <img src="img/img-1.png" style="width:100%"></div>
-    <div class="text">Caption Two</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <div class="soft-img">
-      <img src="img/img-1.png" style="width:100%"></div>
-    <div class="text">Caption Three</div>
-  </div>
-
- 
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="projects container">
-      <div class="projects-header">
-        <h1 class="section-title">Cal <span>en </span>dar</h1>
-      </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Upcoming Event</h1>
-            
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        </div>
-    </div>
-  </section>
+  
 
        
       
