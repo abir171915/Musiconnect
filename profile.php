@@ -66,11 +66,14 @@
                     echo  '<h1>'.'Name: '.$row['Name'].'</h1>';
                     echo "<br/>";
                     echo '<h1>'.'Genre: '.$row['Genre'].'</h1>';
-                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."'> <button type='button' class='cta'>Follow</button> </a>" ;
-                        
+                    echo '<iframe style="display:none;" name="target"></iframe>';
+                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta'>Follow</button> </a>" ;
+                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta2'>Following</button> </a>" ;
+                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta2'>Follower</button> </a>" ;
+    
                 
                     
-                        }
+                    }
                     }      
                 
         echo "</div>";
