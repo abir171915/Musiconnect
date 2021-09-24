@@ -21,7 +21,7 @@
             <li><a href="#" data-after="Home">HOME</a></li>
             <li><a href="mprofile.php" data-after="Service">Profile</a></li>
             <li><a href="#" data-after="Projects">Upcoming Shows</a></li>
-            <li><a href="#" data-after="Contact">Following</a></li>
+            <!-- <li><a href="#" data-after="Contact">Following</a></li> -->
           </ul>
         </div>
       </div>

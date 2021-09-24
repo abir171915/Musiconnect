@@ -46,3 +46,4 @@ function showSuggestions(list){
     }
     suggBox.innerHTML=listData;
 }
+

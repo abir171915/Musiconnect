@@ -66,16 +66,20 @@
                     echo  '<h1>'.'Name: '.$row['Name'].'</h1>';
                     echo "<br/>";
                     echo '<h1>'.'Genre: '.$row['Genre'].'</h1>';
-                
+                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."'> <button type='button' class='cta'>Follow</button> </a>" ;
                         
                 
                     
                         }
                     }      
-                ?>
-        </div>
+                
+        echo "</div>";
         
-        <a  href="#" type="button" class="cta">Book Now</a>
+        
+        
+        ?>
+        
+        <script src="btn.js"></script>
       </div>
     </div>
   </section>
