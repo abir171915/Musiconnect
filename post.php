@@ -18,7 +18,7 @@
     </div>
     <div>
     <button>
-    <div class="dots">...<div>
+    <div class="dots"><div>
     </button>
         <div class="status_bar"><?php echo $_SESSION['name']?></div>
             <p class="posttext">

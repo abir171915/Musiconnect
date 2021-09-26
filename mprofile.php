@@ -98,10 +98,7 @@ session_start();
                         }
                     }      
                 ?>
-        <!-- </div> -->
         
-        <!-- <a  href="#" type="button" class="cta">Book Now</a> -->
-      <!-- </div> -->
     </div>
   </section>
 
@@ -154,6 +151,7 @@ session_start();
                 echo "</div>";
                 
                 include("post.php");
+                
                 $post =new Post();
                 $row_user= $post->get_user($id1); 
               }
@@ -165,16 +163,7 @@ session_start();
     
   </div>
 <br>
-  
-
-       
-      
-   
  
-
-  
-
-  
 </body>
 </html>
 

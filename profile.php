@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="profile.css?v=<?php echo time();?>">
+  <script src="refresh.js"></script>
   <title>Musiconnect</title>
 </head>
 <body>
@@ -56,8 +57,14 @@
         
       <div>
           <div class="details">
+            
+
+            </script> -->
                 <?php
                     include('db.php');
+                    
+                    
+                   
                     $str=mysqli_real_escape_string($con,$_GET['id']);
                     $sql="select * from musician where Name like '%$str%'";
                     $res=mysqli_query($con,$sql);
@@ -67,27 +74,93 @@
                     echo "<br/>";
                     echo '<h1>'.'Genre: '.$row['Genre'].'</h1>';
                     echo '<iframe style="display:none;" name="target"></iframe>';
-                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta'>Follow</button> </a>" ;
-                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta2'>Following</button> </a>" ;
-                    echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta2'>Follower</button> </a>" ;
-    
-                
+                    session_start();
+                    $sender_id=$_SESSION['id'];
+                    $s='select * from follow where sender_id = '.$sender_id.' && receiver_id= '.$row['m_id'].'';
                     
+                    $res1=mysqli_query($con,$s);
+                    $num1 = mysqli_num_rows($res1);
+                    if ($result = $con->query($s)){
+	                  $row1 = $result->fetch_assoc();
                     }
-                    }      
+                    if($num1==1){
+                      $output="<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button  type='button' class='cta' onclick='refresh()'>Unfollow</button> </a>";
+                      // header("refresh: 1;");
+                    }
+                    else{
+                      $output="<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button  type='button' class='cta' onclick='refresh()'>Follow</button> </a>";
+                      
+                    }
+
+                    echo $output;
+                    
+                     //header("refresh: 0;");
+                    // echo "<a href='follow.php?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button  type='button' class='cta' onclick='button1()'>Follow</button> </a>" ;                  
+                    // echo "<a href='#?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button type='button' class='cta2' onclick='button3()'>Follower</button> </a>" ;
+                    // echo "<a href='#?name=".$row['Name']."&id=".$row['m_id']."' target='target'> <button style='margin-right:10px' type='button' class='cta2' onclick='button3()'>Following</button> </a>" ;
+                    echo "<div class='dropdown'>";
+                    echo "<button type='button' class='cta2'>Follower</button>";
+                      echo "<div class='dropdown-content'>";
+                            $receiver_id=$row['m_id'];
+                            $s1='select * from follow where receiver_id= '.$receiver_id.'';
+                            $res2=mysqli_query($con,$s1);
+                            if(mysqli_num_rows($res2)>0){
+                              while($row2=mysqli_fetch_assoc($res2)){  
+                                  echo "<a href='#'>".$row2['sender_name']."</a>";
+                              }
+                            }
+                            else{
+                              echo "<a href='#'>'No Follower'</a>";
+                            }      
+                      echo "</div>";
                 
+                    echo "</div>";
+                    
+                    
+                    echo "<div class='dropdown2'>";
+                    echo "<button type='button' class='cta2'>Following</button>";
+                      echo "<div class='dropdown-content2'>";
+                            $receiver_id=$row['m_id'];
+                            $s1='select * from follow where sender_id= '.$receiver_id.'';
+                            $res2=mysqli_query($con,$s1);
+                            if(mysqli_num_rows($res2)>0){
+                              while($row2=mysqli_fetch_assoc($res2)){  
+                                  echo "<a href='#'>".$row2['receiver_name']."</a>";
+                              }
+                            }
+                            else{
+                              echo "<a href='#'>'No Following'</a>";
+                            }      
+                      echo "</div>";
+                
+                    echo "</div>";
+
+
+                    }
+                    }  
+                            
         echo "</div>";
         
         
         
         ?>
+       
         
-        <script src="btn.js"></script>
+        
+          
       </div>
     </div>
   </section>
   <br>
   <!-- End Hero Section  -->
+  <section id="menubar">
+          <div class="menubutton">
+            <a href="mprofile.php"><button class="button" type="button">Timeline</button></a>
+            <a href="calendar.php"><button class="button" type="button">Calender</button></a>
+            <!-- <button class="button" type="button"></button> -->
+            <button class="button" type="button">About</button>
+          </div>
+  </section>
 
 <!-- Slideshow container -->
 <section id="softwares">
@@ -95,7 +168,48 @@
   <div><br>
     <div class="section-top">
       <h1 class="section-title">News<span> Feed</span></h1>
-      <div id="post_bar" >
+                      <div id='post_bar'>
+      
+                      <?php
+                      include('db.php');
+                      $str1=mysqli_real_escape_string($con,$_GET['id']);
+                      $sql="select * from musician where Name like '%$str1%'";
+                      $res=mysqli_query($con,$sql);
+                      
+                      if ($res = $con->query($sql)){
+                        $row1 = $res->fetch_assoc();
+                        }
+                      if(mysqli_num_rows($res)>0){
+                        $sql1="select * from posts where m_id = ".$row1['m_id']."";
+                        $res1=mysqli_query($con,$sql1);
+                        if(mysqli_num_rows($res1)>0){
+                         
+                          
+                      while($row=mysqli_fetch_assoc($res1)){
+                                  echo  "<div id='post'>";
+                                  echo "<div>";
+                                  echo "<div class='status_bar'>".$row1['Name']."</div>";
+                                  
+                                  echo "<p class='posttext'>";
+                            
+                                   echo  $row['post'];
+                            
+                                  echo "</p>";
+                                  echo "<br/>";
+                                  echo "<br/>";  
+                                  echo "</div>";
+                                  echo "<br>";
+                                  echo "<br>";
+                                  echo "</div>";
+                                  echo "<br>";
+                                  echo "<br>";
+                      }
+                      }
+                    }
+                       
+                            ?>
+                        
+                        
       
       </div>
       
@@ -104,50 +218,12 @@
     </div>
   </div>
 <br>
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
-    <div class="soft-img">
-    <img src="img/img-1.png" style="width:100%"></div>
-    <div class="text">Caption Text</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <div class="soft-img">
-      <img src="img/img-1.png" style="width:100%"></div>
-    <div class="text">Caption Two</div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <div class="soft-img">
-      <img src="img/img-1.png" style="width:100%"></div>
-    <div class="text">Caption Three</div>
-  </div>
+  
+  
 
  
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="projects container">
-      <div class="projects-header">
-        <h1 class="section-title">Cal <span>en </span>dar</h1>
-      </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Upcoming Event</h1>
-            
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        </div>
-    </div>
-  </section>
+  
 
        
       

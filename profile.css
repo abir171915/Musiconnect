@@ -22,7 +22,74 @@ a {
 	align-items: center;
 	justify-content: center;
 }
+.details{
+	position: relative;
+	/* display: inline-block; */
+}
+.dropdown{
+	position: absolute;
+	right: 0px;
+	bottom:280px;
+	
+}
+.dropdown2{
+	position: absolute;
+	right: 190px;
+	bottom:280px;
 
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	right: 60px;
+	top: 270px;
+	
+  }
+  .dropdown-content2 {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	right: 67px;
+	top: 270px;
+	
+  }
+  .dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  
+  .dropdown-content2 a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  .dropdown-content2 a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+  .dropdown2:hover .dropdown-content2 {
+	display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .cta2 {
+	background-color: #3e8e41;
+  }
+  .dropdown2:hover .cta2 {
+	background-color: #3e8e41;
+  }
 
 img {
 	height: 100%;
@@ -68,9 +135,14 @@ p {
 	color: white;
 	background-color: rgb(0, 255, 106);
 }
-.cta2 {
+ .cta2 {
+	 position: absolute;
+	 top:50%;
+	 right: 60px;
+	 top: 180px;
+	float: right;
 	display: inline-block;
-	padding: 10px 30px;
+	padding: 25px 30px;
 	color: white;
 	background-color: transparent;
 	border: 2px solid rgb(255, 0, 64);
@@ -87,6 +159,7 @@ p {
 	color: white;
 	background-color: rgb(0, 255, 106);
 }
+
  
 .brand h1 {
 	font-size: 3rem;
@@ -297,10 +370,54 @@ p {
     padding: 20px;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+#menubar{
+    margin-top: 20px;
+    margin-left: 600px;
+    justify-content: center;
+}
+
+.menubutton .button  {
+    background-color: rgb(0, 0, 0); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 3px solid rgba(0, 128, 0, 0.561);
+  }
+  .menubutton .button:hover {
+    background-color: black; /* Green */
+    color: rgb(8, 187, 8);
+  }
+
 
 
 /* End Hero Section */
 * {box-sizing:border-box}
+
+.status_bar{
+    font-size: 30px;
+    font-weight: bold;
+    color: #405d9b;
+}
+
+#post{
+    padding: 10px;
+    border: rgba(10, 63, 98, 0.308) 3px solid;
+    border-radius: 20px;
+    background-color: rgba(147, 246, 231, 0.123); 
+    box-shadow: 0 5px 5px rgba(0, 24, 236, 0.287);
+}
+
+.posttext{
+    font-size: 20px;
+}
 
 
 
