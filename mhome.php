@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="mhome.css">
+  <link rel="stylesheet" href="mhome.css?v=<?php echo time();?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Musiconnect</title>
 </head>
@@ -20,7 +20,7 @@
           <ul>
             <li><a href="#" data-after="Home">HOME</a></li>
             <li><a href="mprofile.php" data-after="Service">Profile</a></li>
-            <li><a href="#" data-after="Projects">Upcoming Shows</a></li>
+            <li><a href="logout.php" data-after="Projects">Logout</a></li>
             <!-- <li><a href="#" data-after="Contact">Following</a></li> -->
           </ul>
         </div>
@@ -66,6 +66,63 @@
   <br>
   <!-- End Hero Section  -->
 
+  <!-- post section -->
+<section id="softwares">
+<div class="slideshow-container">
+  <div><br>
+    <div class="section-top">
+      <h1 class="section-title">News<span> Feed</span></h1>
+                      <div id='post_bar'>
+      
+                      <?php
+                      include('db.php');
+                      session_start();
+                      // $str1=mysqli_real_escape_string($con,$_SESSION['id']);
+                      $sid=$_SESSION['id'];
+                      $sql="select * from follow where sender_id = $sid ";
+                      $res=mysqli_query($con,$sql);
+                      
+                      if(mysqli_num_rows($res)>0){
+                        while($row1=mysqli_fetch_assoc($res)){  
+                          $sql1="select * from posts where m_id = ".$row1['receiver_id']."";
+                          $res1=mysqli_query($con,$sql1);
+                          if(mysqli_num_rows($res1)>0){
+                           
+                            
+                        while($row=mysqli_fetch_assoc($res1)){
+                                    echo  "<div id='post'>";
+                                    echo "<div>";
+                                    echo "<div class='status_bar'>".$row1['receiver_name']."</div>";
+                                    
+                                    echo "<p class='posttext'>";
+                              
+                                    echo  $row['post'];
+                              
+                                    echo "</p>";
+                                    echo "<br/>";
+                                    echo "<br/>";  
+                                    echo "</div>";
+                                    echo "<br>";
+                                    echo "<br>";
+                                    echo "</div>";
+                                    echo "<br>";
+                                    echo "<br>";
+                        }
+                        }
+                        }
+                      }
+                      
+                       
+                    
+                       
+                            ?>
+
+      </div>
+
+    </div>
+  </div>
+<br>
+</section>
 
 
 

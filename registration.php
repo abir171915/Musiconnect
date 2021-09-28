@@ -28,4 +28,15 @@ if($num == 1){
 	
 }
 
+$s1= " select * from usertable where email = '$email' ";
+
+$result1 = mysqli_query($con, $s1);
+
+$num = mysqli_num_rows($result1);
+if ($result1 = $con->query($s1)){
+	$row = $result1->fetch_assoc();
+	
+	$_SESSION['id']=$row['userid'];
+}
+
 ?>

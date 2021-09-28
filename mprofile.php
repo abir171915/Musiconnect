@@ -61,9 +61,10 @@ session_start();
   <section id="hero">
           
                <?php
+                 
                   include('db.php');
                   $str=$_SESSION['id'];
-                  $sql="select * from musician where m_id like '$str'";
+                  $sql="select * from musician where m_id = $str";
                   $res=mysqli_query($con,$sql);
                   if(mysqli_num_rows($res)>0){
                     while($row=mysqli_fetch_assoc($res)){
@@ -82,9 +83,10 @@ session_start();
       <!-- <div> -->
           <!-- <div class="details"> -->
                 <?php
+                
                     include('db.php');
-                     $str=$_SESSION['id'];
-                    $sql="select * from musician where m_id like '$str'";
+                    $str=$_SESSION['id'];
+                    $sql="select * from musician where m_id = $str";
                     $res=mysqli_query($con,$sql);
                     if(mysqli_num_rows($res)>0){
                     while($row=mysqli_fetch_assoc($res)){

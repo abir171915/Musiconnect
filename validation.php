@@ -20,6 +20,7 @@ $num = mysqli_num_rows($result);
 if ($result1 = $con->query($s)){
 	$row = $result->fetch_assoc();
 	$_SESSION['name']=$row['username'];
+	$_SESSION['id']=$row['userid'];
 }
 
 if($num == 1){

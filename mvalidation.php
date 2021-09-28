@@ -12,7 +12,7 @@ $pass= $_POST['password'];
 
 
 
-$s= " select * from musician where email = '$email' && password= '$pass'";
+$s= " select * from musician where Email = '$email' && password= '$pass'";
 
 $result = mysqli_query($con, $s);
 
